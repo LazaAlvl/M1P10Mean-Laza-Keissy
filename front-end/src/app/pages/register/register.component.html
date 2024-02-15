@@ -1,0 +1,45 @@
+<div class="overlay"></div>
+<div class="col-md-5 mx-auto py-5">
+    <h3>REGISTER</h3>
+    <form [formGroup]="registerForm" action="#" class="contact-form">
+        <!-- <div class="row">
+            <div class="col-md-6"> -->
+              <div class="form-group">
+                <input formControlName="firstname" type="text" class="form-control" placeholder="Your FirstName">
+                <span *ngIf="registerForm.hasError('required', 'firstname') && registerForm.controls ['firstname'].dirty"  style="color: red;">*Email required </span>
+              </div>
+
+              <div class="form-group">
+                <input formControlName="lastname" type="text" class="form-control" placeholder="Your LastName">
+                <span *ngIf="registerForm.hasError('required', 'lastname') && registerForm.controls ['lastname'].dirty"  style="color: red;">*Lastname required </span>
+              </div>
+          <!-- </div>
+          <div class="col-md-6"> -->
+              <div class="form-group">
+                <input formControlName="email"type="text" class="form-control" placeholder="Your E-mail">
+                <span *ngIf="registerForm.hasError('required', 'email') && registerForm.controls ['email'].dirty"  style="color: red;">*Email required </span>
+                <span *ngIf="registerForm.hasError('email', 'email')" style="color: red;">*Email Invalid </span>
+              </div>
+              <div class="form-group">
+                <input formControlName="password" type="password" class="form-control" placeholder="Your Password">
+                <span *ngIf="registerForm.hasError('required', 'password') && registerForm.controls ['password'].dirty"  style="color: red;">*Email required </span>
+              </div>
+              <div class="form-group">
+                <input formControlName="confirmpassword" type="password" class="form-control" placeholder="Confrim Password">
+                <span *ngIf="registerForm.hasError('required', 'confirmpassword') && registerForm.controls ['confirmpassword'].dirty"  style="color: red;">*Confirm Password required </span>
+                <span *ngIf="registerForm.hasError('confirmPasswordValidator', 'confirmpassword')" style="color: red;">*Password didn't match </span>
+              </div>
+              <!-- </div>
+      </div> -->
+            <div class="form-group">
+              <input type="text" formControlName="number"class="form-control" placeholder="Your Number">
+              <span *ngIf="registerForm.hasError('required', 'number') && registerForm.controls ['number'].dirty"  style="color: red;">*Email required </span>
+            </div>
+     
+      <div class="form-group">
+        <input (click)="register()" type="submit" value="Submit" class="btn btn-primary py-3 px-5 mx-auto">
+      </div>
+    </form>
+    <span style="color: black;">Already have account? <a routerLink="/login">click here</a></span>
+</div>
+
