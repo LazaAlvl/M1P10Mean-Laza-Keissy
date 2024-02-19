@@ -6,7 +6,7 @@ const { GetService,CreateService, UpdateService, DeleteService } = require('../c
 /* CRUD service */
 
 router.get('/index', GetService);
-router.get('/create', CreateService);
+router.post('/create', CreateService);
 router.put('/update/:id', UpdateService);
 router.delete('/delete/:id',DeleteService);
 
