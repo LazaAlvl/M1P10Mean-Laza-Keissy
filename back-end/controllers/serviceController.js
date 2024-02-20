@@ -1,11 +1,12 @@
 const { json } = require('express');
-const  Service  = require('../models/serviceModel');
+const Service = require('../models/serviceModel');
+
 
 module.exports.GetService = async (req, res, next) => {
     try {
         const services = await Service.find();
         console.log(services);
-        return res.status(200).json(services);
+        return res.json(services);
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -71,3 +72,31 @@ module.exports.DeleteService = async (req,res,next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+module.exports.getPaginatedServices= async (req, res, next) => {
+      try {
+        const services = await Service.find();
+
+
+        const page = parseInt(req.query.page) || 1;
+        const pageSize = parseInt(req.query.pageSize) || 8;
+  
+        const startIndex = (page - 1) * pageSize;
+        const endIndex = page * pageSize;
+        const paginatedServices = services.slice(startIndex, endIndex);
+        const totalPages = Math.ceil(services.length / pageSize);
+  
+        const paginatedResult = {
+          services: paginatedServices,
+          totalServices: services.length,
+          totalPages: totalPages,
+          currentPage: page
+        };
+
+        res.json(paginatedResult);
+
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+};

@@ -1,7 +1,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
       <div class="container">
-        <a class="navbar-brand" href="index.html">AMELIA</a>
+        <a class="navbar-brand" routerLink="/home">AMELIA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="oi oi-menu"></span> Menu
         </button>
@@ -12,13 +12,20 @@
             <li class="nav-item"><a routerLink="/about" class="nav-link">About</a></li>
             <li class="nav-item"><a routerLink="/service" class="nav-link">Services</a></li> 
             <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
-            
           </ul>
+      <ng-container *ngIf="isloggedIn">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser"></fa-icon></a></li>
+            <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser" class="fa-lg"></fa-icon></a></li>
+            <li class="nav-item"><a routerLink="/register" (click)="logout()" class="nav-link"><fa-icon [icon]="faDoor" class="fa-lg"></fa-icon></a></li>
           </ul>
+      </ng-container>
+      <ng-container *ngIf="!isloggedIn">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser" class="fa-lg"></fa-icon> Connect</a></li>
+        </ul>
+    </ng-container>
         </div>
-
+        
         
       </div>
     </nav>
