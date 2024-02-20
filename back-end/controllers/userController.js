@@ -37,7 +37,11 @@ module.exports.LoginClient = async (req, res, next) => {
             return res.status(400).json('Password incorrect!');
         }
 
+<<<<<<< HEAD
     return res.status(200).json({client});
+=======
+    return res.json({client});
+>>>>>>> 915c5068d72ce8bcfed118897d1045b1bc13662c
 
 } catch (error) {
     // Gérer les erreurs
