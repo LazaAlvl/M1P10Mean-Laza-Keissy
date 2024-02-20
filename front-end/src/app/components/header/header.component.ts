@@ -12,6 +12,9 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+
+
+  
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);
   }
