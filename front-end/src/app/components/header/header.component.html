@@ -14,9 +14,14 @@
             <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
             
           </ul>
+          <ng-container *ngIf="isLoggedIn">
+
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser"></fa-icon></a></li>
+            <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser" class="fa-lg"></fa-icon></a></li>
+            <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faDoorOpen" class="fa-lg"></fa-icon></a></li>
           </ul>
+
+        </ng-container>
         </div>
 
         

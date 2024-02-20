@@ -16,5 +16,11 @@ export class AuthService {
     const url = apiUrl.authServiceApi + 'loginclient';
     return this.http.post<any>(url, loginObj);
   }
+
+
+ isLoggedIn(){
+  return !!localStorage.getItem("user_id");
+ }
+
 }
 // 
