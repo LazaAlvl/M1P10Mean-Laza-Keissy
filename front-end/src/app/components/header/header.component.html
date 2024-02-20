@@ -13,7 +13,6 @@
             <li class="nav-item"><a routerLink="/service" class="nav-link">Services</a></li> 
             <li class="nav-item"><a routerLink="/contact" class="nav-link">Contact</a></li>
           </ul>
-<<<<<<< HEAD
           <ng-container *ngIf="!isLoggedIn">
 
             <ul class="navbar-nav ml-auto">
@@ -30,19 +29,7 @@
           </ul>
 
         </ng-container>
-=======
-      <ng-container *ngIf="isloggedIn">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser" class="fa-lg"></fa-icon></a></li>
-            <li class="nav-item"><a routerLink="/register" (click)="logout()" class="nav-link"><fa-icon [icon]="faDoor" class="fa-lg"></fa-icon></a></li>
-          </ul>
-      </ng-container>
-      <ng-container *ngIf="!isloggedIn">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item"><a routerLink="/login" class="nav-link"><fa-icon [icon]="faUser" class="fa-lg"></fa-icon> Connect</a></li>
-        </ul>
-    </ng-container>
->>>>>>> 915c5068d72ce8bcfed118897d1045b1bc13662c
+
         </div>
         
         

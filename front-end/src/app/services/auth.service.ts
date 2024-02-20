@@ -9,11 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   http = inject(HttpClient);
 
-<<<<<<< HEAD
   isLoggedIn$ = new BehaviorSubject<boolean>(false)
-=======
-  isLoggedIn$ = new BehaviorSubject<boolean>(false);
->>>>>>> 915c5068d72ce8bcfed118897d1045b1bc13662c
 
   registerService(registerObj:any){
     const url = apiUrl.authServiceApi + 'registerclient';
@@ -23,17 +19,10 @@ export class AuthService {
     const url = apiUrl.authServiceApi + 'loginclient';
     return this.http.post<any>(url, loginObj);
   }
-<<<<<<< HEAD
 
-
- isLoggedIn(){
-  return !!localStorage.getItem("user_id");
- }
-
-=======
   isLoggedin(){
     return !!localStorage.getItem("user_id");
   }
->>>>>>> 915c5068d72ce8bcfed118897d1045b1bc13662c
+
 }
 // 
