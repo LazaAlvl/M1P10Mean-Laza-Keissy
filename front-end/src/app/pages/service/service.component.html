@@ -10,8 +10,8 @@
     </div>
     <div class="row">
         <div class="col-md-4 " *ngFor="let service of paginatedServices">
-            <a href="#" class="work-entry">
-                <img src="assets/images/work-1.jpg" class="img-fluid" alt="Colorlib Template">
+            <a [routerLink]="['/info-service', service._id]" class="work-entry">
+                <img src="assets/images/{{ service.image}}" class="img-fluid" alt="Colorlib Template">
                 <div class="info d-flex align-items-center">
                     <div>
                         <div class="icon mb-4 d-flex align-items-center justify-content-center">

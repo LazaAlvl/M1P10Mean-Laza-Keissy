@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { GetService,CreateService, UpdateService, DeleteService, getPaginatedServices } = require('../controllers/serviceController');
+const { GetService,CreateService, UpdateService, DeleteService, getPaginatedServices, getServiceDetails} = require('../controllers/serviceController');
 
 /* CRUD service */
 
@@ -11,5 +11,6 @@ router.put('/update/:id', UpdateService);
 router.delete('/delete/:id',DeleteService);
 
 router.get('/paginatedservices', getPaginatedServices);
+router.get('/infos-service/:id', getServiceDetails);
 
 module.exports = router;

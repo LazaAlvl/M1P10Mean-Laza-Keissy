@@ -13,5 +13,9 @@ export class ServiceService {
     const url = `${apiUrlservice.ServiceApi}paginatedservices?page=${page}&pageSize=${pageSize}`;
     return this.http.get<any>(url);
   }
+  getServiceDetails(id: string): Observable<any> {
+    const url = `${apiUrlservice.ServiceApi}infos-service/${id}`;
+    return this.http.get<any>(url);
+  }
 
 }

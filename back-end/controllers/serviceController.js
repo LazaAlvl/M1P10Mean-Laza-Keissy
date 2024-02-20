@@ -17,7 +17,9 @@ module.exports.CreateService = async (req, res, next) => {
     const { name, price} = req.body;
     try{  
     const service = new Service({
+        image,
         name,
+        description,
         price
     });
     await service.save();
@@ -72,6 +74,19 @@ module.exports.DeleteService = async (req,res,next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+module.exports.getServiceDetails = async (req, res) => {
+    try {
+        const service = await Service.findById(req.params.id);
+        if(service){
+            return res.json(service); // Utilisez `service` au lieu de `services`
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Failed to get service details' });
+    }
+};
+  
 
 module.exports.getPaginatedServices= async (req, res, next) => {
       try {
