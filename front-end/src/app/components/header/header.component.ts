@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faDoorOpen, fas } from '@fortawesome/free-solid-svg-icons';
@@ -13,15 +13,28 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   authService = inject(AuthService);
-  isLoggedIn: boolean = this.authService.isLoggedIn();
+  isLoggedIn: boolean =false;
 
   constructor(library: FaIconLibrary) {
     library.addIconPacks(fas);
   }
+  ngOnInit(): void {
+    
+    this.authService.isLoggedIn$.subscribe(res=>{
+      this.isLoggedIn = this.authService.isLoggedIn();
+    })
+  }
 
   faUser = faUser;
   faDoorOpen = faDoorOpen;
+
+  logout()
+  {
+    localStorage.removeItem("user_id");
+    this.authService.isLoggedIn$.next(false)
+  }
+
 
 }

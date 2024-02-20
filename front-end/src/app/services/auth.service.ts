@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { apiUrl } from '../api.url';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   http = inject(HttpClient);
+
+  isLoggedIn$ = new BehaviorSubject<boolean>(false)
 
   registerService(registerObj:any){
     const url = apiUrl.authServiceApi + 'registerclient';
