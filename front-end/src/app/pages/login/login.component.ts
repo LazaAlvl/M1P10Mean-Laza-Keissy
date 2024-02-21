@@ -35,9 +35,15 @@ export default class LoginComponent {
   {
     this.authservice.loginService(this.loginForm.value).subscribe({
       next:(res)=>{
-        alert("Login successfully!") 
+        // console.log("Response from loginService:", res.client._id);
+      // Reste du code pour le traitement de la réponse
+        alert("Login successfully!")
+        
+        localStorage.setItem("user_id", res.client._id);
+        localStorage.setItem("firstname", res.client.firstname); 
+        this.authservice.isLoggedIn$.next(true);
         this.loginForm.reset();
-        this.router.navigate(['home'])
+        this.router.navigate(['home']) 
       },
       error:(err)=>
       console.log(err)
