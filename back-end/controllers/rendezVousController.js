@@ -68,3 +68,55 @@ module.exports.DeleteRendezVous = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+module.exports.GetRendezVousClient = async (req, res, next) => {
+    try {
+        const clientId = req.params.clientId;
+
+        const rendezVousClient = await RendezVous.find({ id_client: clientId })
+            .populate('id_employé', 'firstname lastname')
+            .populate('id_service', 'name price')
+            .exec();
+
+        return res.status(200).json(rendezVousClient);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+module.exports.EnvoyerRappels = async (req, res, next) => {
+    try {
+        const clientId = req.params.clientId;
+        const dateActuelle = new Date();
+        dateActuelle.setHours(dateActuelle.getHours() + 3);
+        const dateLimiteRappel = new Date(dateActuelle.getTime() + 24 * 60 * 60 * 1000 + 3 * 60 * 60 * 1000);
+        console.log(dateLimiteRappel);
+        const rendezVousClient = await RendezVous.find({ id_client: clientId }).populate('id_service', 'name');
+
+        const rendezVousFuturs = rendezVousClient.filter(rendezVous => new Date(rendezVous.date) > dateActuelle && new Date(rendezVous.date) <= dateLimiteRappel);
+
+        const rendezVousRappelMessages = rendezVousFuturs.map(rendezVous => {
+            const differenceMs = new Date(rendezVous.date) - dateActuelle;
+            const heuresRestantes = Math.floor(differenceMs / (1000 * 60 * 60)); // Heures entières restantes
+            const minutesRestantes = Math.round((differenceMs % (1000 * 60 * 60)) / (1000 * 60)); // Minutes restantes arrondies
+
+            if (heuresRestantes === 0 && minutesRestantes === 0) {
+                return `Rendez-vous pour ${rendezVous.id_service.name} imminent`;
+            } else if (heuresRestantes === 0) {
+                return `Rendez-vous pour ${rendezVous.id_service.name} dans ${minutesRestantes} minutes`;
+            } else {
+                return `Rendez-vous pour ${rendezVous.id_service.name} dans ${heuresRestantes} heures et ${minutesRestantes} minutes`;
+            }
+        });
+
+        return res.status(200).json(rendezVousRappelMessages);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
+
