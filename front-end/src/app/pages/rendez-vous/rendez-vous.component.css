@@ -1,0 +1,18 @@
+.info-service{
+    display: flex;
+}
+.div-empl {
+    display: flex;
+    align-items: center;
+    
+}
+.employees{
+    margin-right: 40px; /* Espacement entre la case à cocher et le label */
+}
+.employees input[type="checkbox"] {
+    margin-right: 10px; /* Espacement entre la case à cocher et le label */
+}
+.employees label {
+    flex-grow: 1; /* Permet au label de prendre tout l'espace restant */
+    text-align: right; /* Alignement du texte à droite */
+}

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const rendezVousSchema = new Schema({
   id_client: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  id_employé: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  id_employe: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   id_service: { type: Schema.Types.ObjectId, ref: 'Service', required: true },
   date: { type: Date, required: true },
   etat: { type: Boolean, default: false }

@@ -1,5 +1,7 @@
 const { json } = require('express');
 const RendezVous = require('../models/rendezVousModel');
+const User = require('../models/userModel');
+const Service = require('../models/serviceModel');
 
 module.exports.GetRendezVous = async (req, res, next) => {
     try {
@@ -17,11 +19,11 @@ module.exports.GetRendezVous = async (req, res, next) => {
 
 
 module.exports.CreateRendezVous = async (req, res, next) => {
-    const { id_client, id_employé, id_service, date, etat } = req.body;
+    const { id_client, id_employe, id_service, date, etat } = req.body;
     try {
         const rendezVous = new RendezVous({
             id_client,
-            id_employé,
+            id_employe,
             id_service,
             date,
             etat
@@ -68,3 +70,18 @@ module.exports.DeleteRendezVous = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+
+
+module.exports.getServiceDetailsrdv = async (req, res) => {
+    try {
+        const service = await Service.findById(req.params.id);
+        const employee = await User.find({ role: 'Employee' });
+
+        if(service && employee){
+            return res.json({service,employee});
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Failed to get service details' });
+    }
+};

@@ -4,3 +4,6 @@ export const apiUrl = {
 export const apiUrlservice = {
     ServiceApi: "http://localhost:3000/services/"
 }
+export const apiUrlRendezVous = {
+    RendezVousApi: "http://localhost:3000/rendez_vous/"
+}

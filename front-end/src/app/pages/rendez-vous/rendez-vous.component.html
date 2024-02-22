@@ -1,0 +1,56 @@
+
+<section class="ftco-section contact-section">
+    <form [formGroup]="rendezvousForm" class="contact-form">
+        <div class="container mt-5" >
+               
+            <div class="col-md-6 " *ngIf="service">
+                <h3>1. Service Selected </h3>
+                <h5>{{service.name}}</h5>
+                <div class="info-service" col-md-6> 
+                    <p>{{service.price}}Ar</p>
+                    <p>{{service.deadline}}</p>
+                    
+                </div>
+                <div class="form-group">
+                    <input type="hidden" formControlName="id_service" [value]="service._id" class="form-control" >
+                </div>
+                <p>With</p>
+                <div class="div-empl">    
+                    <div class="employees" *ngFor="let empls of employee"> 
+                        <input 
+                            type="checkbox"
+                            [value]="empls._id" 
+                            [disabled]="isSelectedEmployee(empls._id)"
+                            (change)="onEmployeeSelected(empls._id)"
+                            [id]="'employee-' + empls._id">
+                        <label>{{empls.firstname}}</label>
+                    </div>
+                </div>
+            </div>    
+        </div> 
+        <div class="container mt-5" >
+            <div class="col-md-6 ">
+                <h3>2. Date and Hour </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="date" formControlName="date" min="{{currentDate | date:'YYYY-MM-dd'}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <select formControlName="hour" id="selectedHour" class="form-control" >
+                                <option *ngFor="let hour of hours" [value]="hour">{{ hour }}h00</option>
+                            </select>
+                        </div>
+                        </div>
+                </div>
+                <div class="container mt-5" >    
+                    <div class="form-group">
+                        <input type="submit" (click)="rendez_vous()" value="Submit" class="btn btn-primary py-3 px-5 mx-auto">
+                    </div>
+                </div>    
+            </div>
+        </div> 
+    </form>    
+</section> 
