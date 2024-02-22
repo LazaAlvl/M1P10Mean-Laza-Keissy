@@ -69,6 +69,7 @@ module.exports.DeleteRendezVous = async (req, res, next) => {
     }
 }
 
+// Historique de rendez-vous d'un client
 module.exports.GetRendezVousClient = async (req, res, next) => {
     try {
         const clientId = req.params.clientId;
@@ -85,6 +86,7 @@ module.exports.GetRendezVousClient = async (req, res, next) => {
     }
 }
 
+// Rappels de rendez-vous dans les 24h pour les clients
 module.exports.EnvoyerRappels = async (req, res, next) => {
     try {
         const clientId = req.params.clientId;
@@ -120,3 +122,64 @@ module.exports.EnvoyerRappels = async (req, res, next) => {
 
 
 
+// ---------- Partie Employé ----------
+
+// Affichage des rendez-vous d'un employé >= today
+module.exports.GetRendezVousEmploye = async (req, res, next) => {
+    try {
+        const employeId = req.params.employeId;
+        const currentDate = new Date(); 
+        currentDate.setHours(currentDate.getHours() + 3);
+        const rendezVousEmploye = await RendezVous.find({
+            id_employé: employeId,
+            // Récupère les rendez-vous avec une date supérieure ou égale à la date actuelle
+            date: { $gte: currentDate },
+            etat:true
+        })
+        .populate('id_client', 'firstname lastname')
+        .populate('id_service', 'name price')
+        .exec();
+
+        return res.status(200).json(rendezVousEmploye);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+// Suivi des tâches effectuées et du montant de commission pour la journée
+module.exports.SuiviTachesCommissionJourEmploye = async (req, res, next) => {
+    try {
+        const employeId = req.params.employeId;
+
+        // Obtenir la date actuelle
+        const currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() + 3);
+
+        // Réinitialiser l'heure, les minutes, les secondes et les millisecondes à 0 pour obtenir le début de la journée
+        currentDate.setHours(0, 0, 0, 0);
+
+        // Calculer la date de début et de fin de la journée en cours
+        const debutJournee = currentDate;
+        const finJournee = new Date(currentDate);
+        finJournee.setDate(finJournee.getDate() + 1);
+
+        // Récupérer tous les rendez-vous pour l'employé spécifique et pour la journée en cours avec l'état "effectué"
+        const rendezVousJourEmploye = await RendezVous.find({
+            id_employé: employeId,
+            date: {
+                $gte: debutJournee, // Date de début du jour
+                $lt: finJournee      // Date de début du lendemain
+            },
+            effectué: true
+        })
+        .populate('id_service', 'price commission')
+        .populate('id_client', 'firstname lastname')
+        ;
+
+        return res.status(200).json({ rendezVousJourEmploye });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
