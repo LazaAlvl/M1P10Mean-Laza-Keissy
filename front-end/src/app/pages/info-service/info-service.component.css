@@ -1,0 +1,16 @@
+.star-rating {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .star {
+    color: #ddd;
+    transition: color 0.2s;
+  }
+  
+  .star.highlighted,
+  .star:hover {
+    color: orange;
+    transform: scale(2.2);
+    cursor: pointer;
+  }

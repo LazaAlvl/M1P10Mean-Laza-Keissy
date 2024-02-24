@@ -7,3 +7,6 @@ export const apiUrlservice = {
 export const apiUrlRendezVous = {
     RendezVousApi: "http://localhost:3000/rendez_vous/"
 }
+export const apiUrlPreference = {
+    preferenceApi: "http://localhost:3000/preference/"
+}

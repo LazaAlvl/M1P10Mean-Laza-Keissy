@@ -12,6 +12,7 @@ export const routes: Routes = [
     {path:'home',component:HomeComponent},
     {path:'service',component:ServiceComponent},
     {path: 'info-service/:id', component: InfoServiceComponent},
-    {path: 'rendez_vous/:id', component: RendezVousComponent}
+    {path: 'rendez_vous/:id', component: RendezVousComponent},
+    {path: 'etoile', component: InfoServiceComponent}
     
 ];
