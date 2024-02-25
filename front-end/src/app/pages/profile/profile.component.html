@@ -1,0 +1,43 @@
+
+<div class="align-items-center d-md-flex justify-content-center mt-3 ">
+<h1 class="md-4"> YOUR PROFILE</h1>
+</div>
+
+<div class="row d-md-flex align-items-center mt-5">
+<div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
+    <h3> Appointment Reminder</h3>
+</div>  
+<div class="col-md-6 py-4 ">
+    <table class="table">
+        <tr>
+            <th>YOUR RDV</th>
+        </tr>
+        <tr *ngFor="let rdv of RendezVousReminder">
+            <td>{{ rdv }}</td>
+        </tr>
+    </table>
+</div>
+</div>
+
+<div class="row d-md-flex align-items-center mt-5">
+    
+        <div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
+            <h3> Appointment history</h3>
+        </div>  
+        <div class="col-md-6 py-4 ">
+            <table class="table">
+                <tr>
+                    <th>Service</th>
+                    <th>Date & Hour</th>
+                    <th>Price</th>
+                </tr>
+                <tr *ngFor="let rdv of RendezVousHistoric">
+                    <td>{{ rdv.id_service.name}}</td>
+                    <td>{{ rdv.date}}</td>
+                    <td>{{ rdv.id_service.price}} AR</td>
+                </tr>
+            </table>
+        </div>
+</div>
+
+    

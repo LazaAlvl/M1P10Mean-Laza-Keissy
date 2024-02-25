@@ -14,3 +14,6 @@
     transform: scale(2.2);
     cursor: pointer;
   }
+  .star.highlighted {
+    color: orange;
+  }

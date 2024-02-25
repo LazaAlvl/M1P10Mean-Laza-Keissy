@@ -2,7 +2,7 @@
 import { Component, Inject, OnInit, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faDoorOpen, fas } from '@fortawesome/free-solid-svg-icons';
+import { faDoorOpen,faBell, fas } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
 
   faUser = faUser;
   faDoorOpen = faDoorOpen;
+  faBell= faBell;
 
 
   logout()

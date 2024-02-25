@@ -13,5 +13,15 @@ export class RendezVousService {
     const url = `${apiUrlRendezVous.RendezVousApi}create`;
     return this.http.post<any>(url,rendezVousObj);
   }
+  
+  HistoriqueRendezVous(user_id: String) {
+    const url = `${apiUrlRendezVous.RendezVousApi}historic/${user_id}`;
+    return this.http.get<any>(url);
+  }
+
+  RappelRendezVous(user_id: String) {
+    const url = `${apiUrlRendezVous.RendezVousApi}rappels/${user_id}`;
+    return this.http.get<any>(url);
+  }
  
 }

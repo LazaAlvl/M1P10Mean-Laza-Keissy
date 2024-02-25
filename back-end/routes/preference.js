@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const { CreatePreference } = require('../controllers/preferenceController');
+const { CreatePreference, GetPreferencealreadyhere } = require('../controllers/preferenceController');
 
 router.post('/create', CreatePreference);
+router.get('/:serviceId/:userId', GetPreferencealreadyhere);
 
 module.exports = router;

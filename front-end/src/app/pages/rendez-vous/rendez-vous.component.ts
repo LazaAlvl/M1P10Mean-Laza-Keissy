@@ -36,7 +36,7 @@ export class RendezVousComponent {
     currentDate: any= new Date();
     
     selectedDate!:Date;
-    hours: number[] = [];
+    hours: string[] = [];
  
     constructor(private route: ActivatedRoute) { }
 
@@ -66,7 +66,8 @@ export class RendezVousComponent {
 
     generateHours(): void {
       for (let i = 8; i <= 16; i++) {
-        this.hours.push(i);
+        const hour = i < 10 ? `0${i}` : `${i}`;
+        this.hours.push(hour);
       }
     }
 
@@ -89,6 +90,7 @@ export class RendezVousComponent {
       const hour = this.rendezvousForm.value.hour;
 
       const dateString = `${date}T${hour}:00:00Z`;
+      console.log(dateString);
 
       this.rendezvousForm.value.date = dateString;
 

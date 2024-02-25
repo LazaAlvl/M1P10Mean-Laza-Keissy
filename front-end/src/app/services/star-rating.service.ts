@@ -15,4 +15,9 @@ export class StarRatingService {
     const url = `${apiUrlPreference.preferenceApi}create`;
     return this.http.post<any>(url,preferenceObj);
   }
+  GetPreferencealreadyhere(serviceId: string, userId: string): Observable<any> {
+    const url = `${apiUrlPreference.preferenceApi}${serviceId}/${userId}`;
+    return this.http.get<any>(url);
+  }
+  
 }

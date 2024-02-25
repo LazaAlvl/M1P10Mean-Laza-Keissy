@@ -1,6 +1,6 @@
 
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServiceService } from '../../services/service.service';
 import { CommonModule } from '@angular/common';
@@ -8,6 +8,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { StarRatingService } from '../../services/star-rating.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-info-service',
@@ -41,7 +42,7 @@ export class InfoServiceComponent implements OnInit{
   preferenceform!:FormGroup;
 
   preferenceService = inject(StarRatingService)
-
+  router = inject(Router);
   
 
   constructor(private route: ActivatedRoute,public starRatingService: StarRatingService) {}
@@ -52,7 +53,13 @@ export class InfoServiceComponent implements OnInit{
     if (!this.isRated) {
       this.currentRating = rating;
       this.isRated = true;
+      // Désactiver les étoiles après la sélection
+      this.disableStars();
     }
+  }
+  
+  disableStars(): void {
+    this.isRated = true;
   }
   
 
@@ -72,8 +79,11 @@ export class InfoServiceComponent implements OnInit{
     this.route.paramMap.subscribe(params => {
       const serviceId = params.get('id');
       if (serviceId) {
-        console.log(serviceId)
         this.getServiceDetails(serviceId);
+        const userId = localStorage.getItem("user_id");
+       if(userId) {
+        this.getPreference(serviceId, userId);
+       }
       }
       this.preferenceform = this.fb.group({ // Initialiser rendezvousForm avec FormBuilder
         // Ajouter les champs de votre formulaire ici
@@ -84,18 +94,42 @@ export class InfoServiceComponent implements OnInit{
     });
   }
   star(start: number): void {
-    this.setRating(start);
-    this.preferenceform.patchValue({
-      etoile: this.currentRating
-    });
-    console.log(this.preferenceform.value);
-    this.preferenceService.InsertPreference(this.preferenceform.value).subscribe({
-      next:(res)=>{
-        alert("Preference inserted!") 
-      },
-      error:(err)=>
-      console.log(err)
+    if (!this.isRated) {
+      this.setRating(start);
+      this.preferenceform.patchValue({
+        id_service: this.preferenceform.value.id_service,
+        id_client: this.preferenceform.value.id_client, 
+        etoile: this.currentRating
+      });
+      console.log(this.preferenceform.value);
+      this.preferenceService.InsertPreference(this.preferenceform.value).subscribe({
+        next:(res)=>{
+          alert("Preference inserted!") 
+        },
+        error:(err)=>
+        console.log(err)
+      });
+    } else {
+      alert("You have already rated this service."); // Afficher un message si l'utilisateur a déjà noté le service
+    }
+  }
+
+  getPreference(id_service: string,id_user: string): boolean {
+    if(id_user){
+    this.preferenceService.GetPreferencealreadyhere(id_service, id_user).subscribe((data) => {
+      if (data) {
+        // Si l'utilisateur a déjà une préférence pour ce service, afficher la note et la désactiver les étoiles
+        this.currentRating = data.etoile;
+        this.isRated = true;
+        
+      }
     })
+    return true;
+    }else{
+      this.router.navigate(['login']);
+      return false;
+    }
+    
   }
 
 

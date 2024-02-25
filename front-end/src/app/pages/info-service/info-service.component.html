@@ -14,7 +14,8 @@
                             [class.highlighted]="isHighlighted(starNumber)"
                             (click)="star(starNumber)"
                             (mouseover)="highlightStar(starNumber)"
-                            (mouseleave)="resetStars()">
+                            (mouseleave)="resetStars()"
+                            [class.disabled]="isRated">
                             &#9733;
                         </span>
                     </div>
