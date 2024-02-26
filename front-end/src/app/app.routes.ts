@@ -6,6 +6,7 @@ import { InfoServiceComponent } from './pages/info-service/info-service.componen
 import { RendezVousComponent } from './pages/rendez-vous/rendez-vous.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PayementComponent } from './pages/payement/payement.component';
+import { UpdateServiceComponent } from './pages/service/update-service/update-service.component';
 
 export const routes: Routes = [
     {path:'login', loadComponent: ()=> import('./pages/login/login.component')},
@@ -17,6 +18,8 @@ export const routes: Routes = [
     {path: 'rendez_vous/:id', component: RendezVousComponent},
     {path: 'etoile', component: InfoServiceComponent},
     {path: 'profile', component: ProfileComponent},
-    {path: 'payement', component: PayementComponent }
+    {path: 'payement', component: PayementComponent },
+    {path: 'update-service/:id', component: UpdateServiceComponent}
+
     
 ];

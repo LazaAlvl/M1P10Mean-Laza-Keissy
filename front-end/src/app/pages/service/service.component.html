@@ -1,30 +1,42 @@
-<section class="ftco-section">
-    <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-      <div class="col-md-7 heading-section text-center ">
-        <h2 class="mb-4">Our Services</h2>
-        <p class="work-category">
-            <span class="px-2"><a href="#" class="active">All</a></span> 
-        </p>
-      </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 " *ngFor="let service of paginatedServices">
-            <a [routerLink]="['/info-service', service._id]" class="work-entry">
-                <img src="assets/images/{{ service.image}}" class="img-fluid" alt="Colorlib Template">
-                <div class="info d-flex align-items-center">
-                    <div>
-                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
-                            <span class="icon-search"></span>
-                        </div>
-                        <h3>{{ service.name }}</h3>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
+
+<section class="ftco-section " *ngIf="isManager()">
+  <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+    <h1 class="md-4"> List of services</h1>
+    
+  </div>
+  <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+    <button class="btn btn-primary text-white">Create</button>
+    
+  </div>
+<div class="align-items-center d-md-flex justify-content-center mt-3 ">
+  
+  <div class="d-md-flex  py-3 ">
+    
+    <table class="table">
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Deadline</th>
+        <th>Commission</th>
+        <th>Action</th>
+      </tr>
+
+      <tr *ngFor="let service of paginatedServices">
+        <td class="align-middle">{{service.name}}</td>
+        <td class="align-middle">{{service.description}}</td>
+        <td class="align-middle">{{service.deadline}}</td>
+        <td class="align-middle">{{service.commission}}</td>
+        <td><button class="btn btn-success mr-2" (click)="update(service._id)"><i class="fa fa-pencil text-white"></i></button>
+          <button class="btn btn-danger"><i class="fa fa-trash text-white"></i></button></td>
+      </tr>
+    </table>
+  </div>
+</div>
+ 
     <div class="row mt-5">
+      
       <div class="col text-center">
+        
         <div *ngIf="totalPages > 0" class="block-27">
             <ul>
               <li><a (click)="prevPage()" [class.disabled]="currentPage === 1">&lt;</a></li>
@@ -36,5 +48,45 @@
           </div>
       </div>
     </div>
-    </div>
 </section>
+
+<section class="ftco-section" *ngIf="!isManager()">
+  <div class="container">
+      <div class="row justify-content-center mb-5 pb-3">
+    <div class="col-md-7 heading-section text-center ">
+      <h2 class="mb-4">Our Services</h2>
+      <p class="work-category">
+          <span class="px-2"><a href="#" class="active">All</a></span> 
+      </p>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-4 " *ngFor="let service of paginatedServices">
+          <a [routerLink]="['/info-service', service._id]" class="work-entry">
+              <img src="assets/images/{{ service.image}}" class="img-fluid" alt="Colorlib Template">
+              <div class="info d-flex align-items-center">
+                  <div>
+                      <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                          <span class="icon-search"></span>
+                      </div>
+                      <h3>{{ service.name }}</h3>
+                  </div>
+              </div>
+          </a>
+      </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col text-center">
+      <div *ngIf="totalPages > 0" class="block-27">
+          <ul>
+            <li><a (click)="prevPage()" [class.disabled]="currentPage === 1">&lt;</a></li>
+            <li *ngFor="let page of getPagesArrays()">
+              <a (click)="getPage(page)" [class.active]="currentPage === page">{{ page }}</a>
+            </li>
+            <li><a (click)="nextPage()" [class.disabled]="currentPage === totalPages">&gt;</a></li>
+          </ul>
+        </div>
+    </div>
+  </div>
+  </div>
+</section>    

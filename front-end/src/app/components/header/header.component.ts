@@ -42,5 +42,14 @@ export class HeaderComponent implements OnInit {
    this.isLoggedIn= this.authService.isLoggedin();
    });
   }
+  isManager(): boolean {
+    const user_role = localStorage.getItem("role");
+      if( user_role === "Manager")
+      { 
+        return true;
+      }else{
+        return false;
+      }
+    }
 
 }

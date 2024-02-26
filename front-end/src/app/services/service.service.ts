@@ -21,5 +21,9 @@ export class ServiceService {
     const url = `${apiUrlRendezVous.RendezVousApi}rdv/${id}`;
     return this.http.get<any>(url);
   }
+  updateService(id: string,serviceObj:any): Observable<any> {
+    const url = `${apiUrlservice.ServiceApi}/update/${id}`;
+    return this.http.put<any>(url,serviceObj);
+  }
 
 }

@@ -36,12 +36,13 @@ module.exports.UpdateService = async (req, res, next) => {
     try {
         console.log('eto eee');
         const service = await Service.findById(req.params.id);
-        // console.log(json(service));
+        console.log(json(service));
         if(service){
             const update_service = await Service.findByIdAndUpdate(
                 req.params.id,
                 {$set:req.body},
                 {new:true}
+
             );
             return res.status(200).json({ message: 'Service updated successfully'});
         }

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { ServiceService } from '../../services/service.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-service',
@@ -17,9 +18,22 @@ export class ServiceComponent implements OnInit {
   totalPages = 0;
   currentPage = 1;
   pageSize = 9;
+  serviceService = inject(ServiceService);
+  ServicesForm!:FormGroup;
 
 
-  constructor(private paginationService: ServiceService) { }
+  constructor(private paginationService: ServiceService,private router:Router,private fb: FormBuilder) {
+    this.ServicesForm = this.fb.group({
+      _id: [''],
+      name: [''],
+      description: [''],
+      deadline: [''],
+      price: [''],
+      commission: ['']
+    });
+
+
+   }
 
   ngOnInit(): void {
     this.getPaginatedServices();
@@ -56,5 +70,40 @@ export class ServiceComponent implements OnInit {
       this.currentPage = page;
       this.getPaginatedServices();
     }
+  }
+
+  isManager(): boolean {
+    const user_role = localStorage.getItem("role");
+      if( user_role === "Manager")
+      { 
+        return true;
+      }else{
+        return false;
+      }
+    }
+
+  update(serviceId: string): void {
+    this.serviceService.getServiceDetails(serviceId).subscribe(
+      (data) => {
+        // Réinitialisez votre formulaire avec les détails récupérés
+        this.ServicesForm.patchValue({
+          _id: data._id,
+          name: data.name,
+          description: data.description,
+          deadline: data.deadline,
+          price: data.price,
+          commission: data.commission
+        });
+        // Puisque vous êtes dans le composant de profil, vous pouvez probablement naviguer vers une page de mise à jour dédiée.
+        // Vous pouvez utiliser le Router pour naviguer vers la page de mise à jour.
+        // Assurez-vous d'injecter le Router dans votre composant.
+        this.router.navigate(['/update-service', serviceId]);
+      },
+      (error) => {
+        console.error('Error fetching service details:', error);
+      }
+    );
+      
+      
   }
 }
