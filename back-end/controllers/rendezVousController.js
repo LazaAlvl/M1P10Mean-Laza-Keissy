@@ -30,7 +30,7 @@ module.exports.CreateRendezVous = async (req, res, next) => {
             etat
         });
         await rendezVous.save();
-        return res.status(200).json('Rendez-vous registered successfully');
+        return res.status(201).json('Rendez-vous registered successfully');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

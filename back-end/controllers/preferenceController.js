@@ -10,7 +10,7 @@ module.exports.CreatePreference = async (req, res, next) => {
             etoile
         });
         await Preferences.save();
-        return res.status(200).json('Preference registered successfully');
+        return res.status(201).json('Preference registered successfully');
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

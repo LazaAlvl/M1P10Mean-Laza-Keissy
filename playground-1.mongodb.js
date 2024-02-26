@@ -1,6 +1,5 @@
 use ('test')
 
-
 // db.rendez_vous.updateOne({
 //     _id: ObjectId('65d30dd84c46c2bb253fa315')
 // },{
@@ -66,4 +65,34 @@ use ('test')
 //     { $set: { effectué: false } } 
 // )
 
-db.users.find();
+// db.createCollection("depenses");
+
+// db.depenses.insertMany(
+//     [
+//         {
+//             type:"Salaire",
+//             date: new Date('2024-02-01'),
+//             prix: 1000000
+//         },
+
+//         {
+//             type:"Loyer",
+//             date: new Date('2024-02-01'),
+//             prix: 350000
+//         },
+
+//         {
+//             type:"Achat pièce",
+//             date: new Date('2024-02-10'),
+//             prix: 50000
+//         },
+
+//         {
+//             type:"Autres dépenses",
+//             date: new Date('2024-02-21'),
+//             prix: 32000
+//         }
+
+//     ]
+// )
+db.depenses.find();
