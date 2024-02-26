@@ -158,13 +158,24 @@ module.exports.EnvoyerRappels = async (req, res, next) => {
 module.exports.GetRendezVousEmploye = async (req, res, next) => {
     try {
         const employeId = req.params.employeId;
+        
+        // Obtenir la date actuelle
         const currentDate = new Date(); 
-        currentDate.setHours(currentDate.getHours() + 3);
+
+        // Extraire l'année, le mois et le jour de la date actuelle
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth() + 1; // Notez que getMonth() retourne les mois de 0 à 11, donc ajoutez 1 pour obtenir le mois actuel
+        const day = currentDate.getDate();
+
         const rendezVousEmploye = await RendezVous.find({
             id_employe: employeId,
-            // Récupère les rendez-vous avec une date supérieure ou égale à la date actuelle
-            date: { $gte: currentDate },
-            etat:true
+            // Filtrer par année, mois et jour de la date actuelle
+            "date": {
+                $gte: new Date(year, month - 1, day), // Date de début de la journée actuelle
+                $lt: new Date(year, month - 1, day + 1) // Date de fin de la journée actuelle
+            },
+            etat: true,
+            effectue: false
         })
         .populate('id_client', 'firstname lastname')
         .populate('id_service', 'name price date')
@@ -176,6 +187,9 @@ module.exports.GetRendezVousEmploye = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+
+
 
 // Suivi des tâches effectuées et du montant de commission pour la journée
 module.exports.SuiviTachesCommissionJourEmploye = async (req, res, next) => {
