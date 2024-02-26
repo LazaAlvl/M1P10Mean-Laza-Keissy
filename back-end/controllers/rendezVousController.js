@@ -137,7 +137,6 @@ module.exports.EnvoyerRappels = async (req, res, next) => {
 
 
 
-
 // ---------- Partie Employé ----------
 
 // Affichage des rendez-vous d'un employé >= today
