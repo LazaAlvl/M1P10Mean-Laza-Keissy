@@ -135,11 +135,11 @@ module.exports.EnvoyerRappels = async (req, res, next) => {
             const minutesRestantes = Math.round((differenceMs % (1000 * 60 * 60)) / (1000 * 60)); // Minutes restantes arrondies
 
             if (heuresRestantes === 0 && minutesRestantes === 0) {
-                return `Rendez-vous pour ${rendezVous.id_service.name} imminent`;
+                return `Appointment for ${rendezVous.id_service.name} imminent`;
             } else if (heuresRestantes === 0) {
-                return `Rendez-vous pour ${rendezVous.id_service.name} dans ${minutesRestantes} minutes`;
+                return `Appointment for ${rendezVous.id_service.name} in ${minutesRestantes} minutes`;
             } else {
-                return `Rendez-vous pour ${rendezVous.id_service.name} dans ${heuresRestantes} heures et ${minutesRestantes} minutes`;
+                return `Appointment for ${rendezVous.id_service.name} in ${heuresRestantes} hours and ${minutesRestantes} minutes`;
             }
         });
 
@@ -302,3 +302,4 @@ module.exports.GetChiffreAffaireMois = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
