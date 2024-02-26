@@ -23,5 +23,19 @@ export class RendezVousService {
     const url = `${apiUrlRendezVous.RendezVousApi}rappels/${user_id}`;
     return this.http.get<any>(url);
   }
+  RendezVousDuJour(user_id: String) {
+    const url = `${apiUrlRendezVous.RendezVousApi}employe_rdv/${user_id}`;
+    return this.http.get<any>(url);
+  }
+
+  Update_effectue(rendez_vous_id: String) {
+    const url = `${apiUrlRendezVous.RendezVousApi}update_effectue/${rendez_vous_id}`;
+    return this.http.get<any>(url);
+  }
+
+  TaskcompletedCommission(employe_id: String) {
+    const url = `${apiUrlRendezVous.RendezVousApi}suivi_taches_commission/${employe_id}`;
+    return this.http.get<any>(url);
+  }
  
 }

@@ -125,7 +125,8 @@ export class RendezVousComponent {
       id_client:[localStorage.getItem("user_id")], // Exemple avec un champ service initialisé à une chaîne vide
       id_employe: [''], // Exemple avec un champ employee initialisé à une chaîne vide
       date: [''], // Exemple avec un champ date initialisé à une chaîne vide
-      hour: [''] // Exemple avec un champ hour initialisé à une chaîne vide
+      hour: [''],
+      etat: ['true'] 
       }); 
       });
     }

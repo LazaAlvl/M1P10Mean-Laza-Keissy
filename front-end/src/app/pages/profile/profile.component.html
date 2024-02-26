@@ -1,43 +1,100 @@
+<!-- Client -->
+<ng-container *ngIf="isClient()" >
+    <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+    <h1 class="md-4"> YOUR PROFILE</h1>
+    </div>
 
-<div class="align-items-center d-md-flex justify-content-center mt-3 ">
-<h1 class="md-4"> YOUR PROFILE</h1>
-</div>
+    <div class="row d-md-flex align-items-center mt-5">
+    <div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
+        <h3> Appointment Reminder</h3>
+    </div>  
+    <div class="col-md-6 py-4 ">
+        <table class="table">
+            <tr>
+                <th>YOUR RDV</th>
+            </tr>
+            <tr *ngFor="let rdv of RendezVousReminder">
+                <td>{{ rdv }}</td>
+            </tr>
+        </table>
+    </div>
+    </div>
 
-<div class="row d-md-flex align-items-center mt-5">
-<div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
-    <h3> Appointment Reminder</h3>
-</div>  
-<div class="col-md-6 py-4 ">
-    <table class="table">
-        <tr>
-            <th>YOUR RDV</th>
-        </tr>
-        <tr *ngFor="let rdv of RendezVousReminder">
-            <td>{{ rdv }}</td>
-        </tr>
-    </table>
-</div>
-</div>
+    <div class="row d-md-flex align-items-center mt-5">
+        
+            <div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
+                <h3> Appointment history</h3>
+            </div>  
+            <div class="col-md-6 py-4 ">
+                <table class="table">
+                    <tr>
+                        <th>Service</th>
+                        <th>Date & Hour</th>
+                        <th>Price</th>
+                    </tr>
+                    <tr *ngFor="let rdv of RendezVousHistoric">
+                        <td>{{ rdv.id_service.name}}</td>
+                        <td>{{ rdv.date}}</td>
+                        <td>{{ rdv.id_service.price}} AR</td>
+                    </tr>
+                </table>
+            </div>
+    </div>
+</ng-container>
 
-<div class="row d-md-flex align-items-center mt-5">
-    
+<!-- Employee -->
+<ng-container *ngIf="isEmployee()" >
+    <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+    <h1 class="md-4"> YOUR PROFILE</h1>
+    </div>
+
+    <div class="row d-md-flex align-items-center mt-5">
+        
+            <div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
+                <h3> Appointment of the Day</h3>
+            </div>  
+            <div class="col-md-6 py-4 ">
+                <table class="table">
+                    <tr>
+                        <th>Client</th>
+                        <th>Service</th>
+                        <th>Date & Hour</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr *ngFor="let rdv of RendezVousoftheDay">
+                        <td>{{ rdv.id_client.firstname}}</td>
+                        <td>{{ rdv.id_service.name}}</td>
+                        <td>{{ rdv.date}}</td>
+                        <td>{{ rdv.id_service.price}} AR</td>
+                        <td><Button class="btn btn-primary py-1 px-3 mx-auto" (click)="UpdateRendezVous(rdv._id)"> Done </Button></td>
+                    </tr>
+                </table>
+            </div>
+    </div>
+    <div class="row d-md-flex align-items-center mt-5">
+        
         <div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
-            <h3> Appointment history</h3>
+            <h3> Tasks completed & Commission</h3>
         </div>  
         <div class="col-md-6 py-4 ">
             <table class="table">
                 <tr>
-                    <th>Service</th>
+                    <th>Client</th>
                     <th>Date & Hour</th>
                     <th>Price</th>
+                    <th>Commission</th>
                 </tr>
-                <tr *ngFor="let rdv of RendezVousHistoric">
-                    <td>{{ rdv.id_service.name}}</td>
+                <tr *ngFor="let rdv of Task_Commission">
+                    <td>{{ rdv.id_client.firstname}}</td>
                     <td>{{ rdv.date}}</td>
                     <td>{{ rdv.id_service.price}} AR</td>
+                    <th>{{ rdv.id_service.price * rdv.id_service.commission / 100}} AR</th>
                 </tr>
             </table>
         </div>
 </div>
+    
+</ng-container>
 
     

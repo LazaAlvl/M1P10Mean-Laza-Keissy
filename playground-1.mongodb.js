@@ -11,6 +11,7 @@ use ('test')
 
 
 // db.rendez_vous.deleteOne({
+<<<<<<< HEAD
 //     _id: ObjectId('65d7087afb41d0ae884f417a')
 // })
 
@@ -23,6 +24,20 @@ db.rendez_vous.insertOne({
     etat: true,
     effectué: true
 })
+=======
+//     _id: ObjectId('65d7ea2036e22a2979a0e113')
+// })
+
+
+// db.rendez_vous.insertOne({
+//      id_client: ObjectId('65cb7c40d9a64305170e60fe'),
+//     id_employé: ObjectId('65cb5b6bb30d3673c42dafc0'),
+//     id_service: ObjectId('65d0f90a3cd07c5568619717'),
+//     date: new Date('2024-02-22T11:00:00Z'),
+//     etat: true,
+//     effectué: true
+// })
+>>>>>>> bbf891fcf6ec5c2bd39ca6e49e7c55b599c3b935
 
 
 // db.rendez_vous.insertMany(
@@ -52,4 +67,14 @@ db.rendez_vous.insertOne({
 //     { $set: { effectué: false } } 
 // )
 
+<<<<<<< HEAD
+=======
+
+db.rendez_vous.updateOne(
+    { _id: ObjectId("65d7a97abd72299df0013b20") },
+    { $set: { effectué: false } } 
+);
+
+
+>>>>>>> bbf891fcf6ec5c2bd39ca6e49e7c55b599c3b935
 db.rendez_vous.find()

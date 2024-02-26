@@ -3,6 +3,7 @@ const RendezVous = require('../models/rendezVousModel');
 const User = require('../models/userModel');
 const Service = require('../models/serviceModel');
 
+
 module.exports.GetRendezVous = async (req, res, next) => {
     try {
         const rendezVous = await RendezVous.find()
@@ -54,6 +55,20 @@ module.exports.UpdateRendezVous = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 }
+module.exports.Update_effectueRendezVous = async (req, res, next) => {
+    try {
+        const rendezVousId = req.params.id;
+        const rendezVous = await RendezVous.findByIdAndUpdate(rendezVousId, { effectue: true }, { new: true });
+        if (rendezVous) {
+            return res.status(200).json({ message: 'Rendez-vous mis à jour avec succès' });
+        } else {
+            return res.status(404).json({ message: 'Rendez-vous non trouvé' });
+        }
+    } catch (error) {
+        console.error('Erreur lors de la mise à jour du rendez-vous', error);
+        return res.status(500).json({ error: 'Erreur interne du serveur' });
+    }
+};
 
 module.exports.DeleteRendezVous = async (req, res, next) => {
     try {
@@ -152,7 +167,7 @@ module.exports.GetRendezVousEmploye = async (req, res, next) => {
             etat:true
         })
         .populate('id_client', 'firstname lastname')
-        .populate('id_service', 'name price')
+        .populate('id_service', 'name price date')
         .exec();
 
         return res.status(200).json(rendezVousEmploye);
@@ -181,18 +196,93 @@ module.exports.SuiviTachesCommissionJourEmploye = async (req, res, next) => {
 
         // Récupérer tous les rendez-vous pour l'employé spécifique et pour la journée en cours avec l'état "effectué"
         const rendezVousJourEmploye = await RendezVous.find({
-            id_employé: employeId,
+            id_employe: employeId,
             date: {
                 $gte: debutJournee, // Date de début du jour
                 $lt: finJournee      // Date de début du lendemain
             },
-            effectué: true
+            effectue: true
         })
         .populate('id_service', 'price commission')
         .populate('id_client', 'firstname lastname')
         ;
 
         return res.status(200).json({ rendezVousJourEmploye });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
+
+// ---------- Partie Manager ----------
+
+module.exports.GetNombreReservationsJour = async (req, res, next) => {
+    try {
+        const dateInput = req.body.date; 
+        const [year, month, day] = dateInput.split('-');
+
+        const db = mongoose.connection;
+        const result = await db.collection('nbre_reservation_jour_vw').find({ year: parseInt(year), month: parseInt(month), day: parseInt(day) }).toArray();
+
+        console.log(result);
+
+        return res.status(200).json({ result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+module.exports.GetNombreReservationsMois = async (req, res, next) => {
+    try {
+        const { year, month } = req.body;
+        
+        const db = mongoose.connection;
+        const result = await db.collection('nbre_reservation_mois_vw').find({ year: parseInt(year), month: parseInt(month) }).toArray();
+
+        console.log(result);
+
+        return res.status(200).json({ result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
+module.exports.GetChiffreAffaireJour = async (req, res, next) => {
+    try {
+        const dateInput = req.body.date; 
+        const [year, month, day] = dateInput.split('-');
+
+        const db = mongoose.connection;
+        const result = await db.collection('chiffre_affaire_jour_vw').find({ year: parseInt(year), month: parseInt(month), day: parseInt(day) }).toArray();
+
+        console.log(result);
+
+        return res.status(200).json({ result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+module.exports.GetChiffreAffaireMois = async (req, res, next) => {
+    try {
+        const { year, month } = req.body;
+        
+        const db = mongoose.connection;
+        const result = await db.collection('chiffre_affaire_mois_vw').find({ year: parseInt(year), month: parseInt(month) }).toArray();
+
+        console.log(result);
+
+        return res.status(200).json({ result });
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
