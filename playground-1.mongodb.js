@@ -107,26 +107,26 @@ use ('test')
 //     }
 //   ]);
 
-db.createView("benefice_par_mois_vw", "total_gain_par_mois_vw", [
-    {
-      $lookup: {
-        from: "total_depense_par_mois_vw",
-        localField: "_id",
-        foreignField: "_id",
-        as: "depense"
-      }
-    },
-    {
-      $unwind: "$depense"
-    },
-    {
-      $project: {
-        _id: 0,
-        year: "$_id.year",
-        month: "$_id.month",
-        benefice: { $subtract: ["$total_price", "$depense.total"] }
-      }
-    }
-  ]);
+// db.createView("benefice_par_mois_vw", "total_gain_par_mois_vw", [
+//     {
+//       $lookup: {
+//         from: "total_depense_par_mois_vw",
+//         localField: "_id",
+//         foreignField: "_id",
+//         as: "depense"
+//       }
+//     },
+//     {
+//       $unwind: "$depense"
+//     },
+//     {
+//       $project: {
+//         _id: 0,
+//         year: "$_id.year",
+//         month: "$_id.month",
+//         benefice: { $subtract: ["$total_price", "$depense.total"] }
+//       }
+//     }
+//   ]);
   
-db.benefice_par_mois_vw.find();
+db.chiffre_affaire_mois.find();

@@ -12,7 +12,7 @@ var servicesRouter = require('./routes/services');
 var rendezVousRouter = require('./routes/rendezVous');
 var preferenceRouter = require('./routes/preference');
 var depenseRouter = require('./routes/depense');
-const statsRouter = require('./routes/stats');
+var statsRouter = require('./routes/stats');
 var app = express();
 
 // view engine setup

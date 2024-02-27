@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-const {GetNombreReservationsJour, GetNombreReservationsMois, GetChiffreAffaireMois, GetChiffreAffaireJour}= require('../controllers/statsController');
+const statsController = require('../controllers/statsController');
 
-router.post('/nombre_reservations_jour', GetNombreReservationsJour);
-router.post('/nombre_reservations_mois', GetNombreReservationsMois);
-router.post('/chiffre_affaire_jour', GetChiffreAffaireJour);
-router.post('/chiffre_affaire_mois', GetChiffreAffaireMois);
+router.post('/nombre_reservations_jour', statsController.GetNombreReservationsJour);
+router.post('/nombre_reservations_mois', statsController.GetNombreReservationsMois);
+router.post('/chiffre_affaire_jour', statsController.GetChiffreAffaireJour);
+router.post('/chiffre_affaire_mois', statsController.GetChiffreAffaireMois);
+
+router.post('/benefice_mois', statsController.GetBeneficeMois);
+module.exports = router;

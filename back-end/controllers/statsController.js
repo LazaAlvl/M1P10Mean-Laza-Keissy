@@ -1,4 +1,5 @@
 const { json } = require('express');
+const mongoose = require('mongoose');
 
 module.exports.GetNombreReservationsJour = async (req, res, next) => {
     try {
@@ -70,3 +71,18 @@ module.exports.GetChiffreAffaireMois = async (req, res, next) => {
     }
 };
 
+module.exports.GetBeneficeMois = async (req, res, next) => {
+    try {
+        const { year} = req.body;
+        
+        const db = mongoose.connection;
+        const result = await db.collection('benefice_par_mois_vw').find({ year: parseInt(year)}).toArray();
+
+        console.log(result);
+
+        return res.status(200).json({ result });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
