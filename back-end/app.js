@@ -12,6 +12,7 @@ var servicesRouter = require('./routes/services');
 var rendezVousRouter = require('./routes/rendezVous');
 var preferenceRouter = require('./routes/preference');
 var depenseRouter = require('./routes/depense');
+const statsRouter = require('./routes/stats');
 var app = express();
 
 // view engine setup
@@ -36,7 +37,7 @@ app.use('/services', servicesRouter);
 app.use('/rendez_vous', rendezVousRouter);
 app.use('/preference', preferenceRouter);
 app.use('/depenses', depenseRouter);
-
+app.use('/stats', statsRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
