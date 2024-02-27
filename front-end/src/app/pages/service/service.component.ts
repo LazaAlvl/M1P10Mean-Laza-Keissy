@@ -106,4 +106,17 @@ export class ServiceComponent implements OnInit {
       
       
   }
+  delete(serviceId: string): void {
+    this.serviceService.deleteService(serviceId).subscribe(
+      (data) => {
+        alert("Service Deleted Successfully");
+        this.router.navigate(['/service']);
+      },
+      (error) => {
+        console.error('Error fetching service details:', error);
+      }
+    );
+      
+      
+  }
 }

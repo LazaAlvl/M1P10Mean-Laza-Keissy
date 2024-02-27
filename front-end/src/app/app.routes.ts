@@ -7,6 +7,11 @@ import { RendezVousComponent } from './pages/rendez-vous/rendez-vous.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { PayementComponent } from './pages/payement/payement.component';
 import { UpdateServiceComponent } from './pages/service/update-service/update-service.component';
+import { CreateServiceComponent } from './pages/service/create-service/create-service.component';
+import { UserComponent } from './pages/user/user.component';
+import { UpdateUserComponent } from './pages/user/update-user/update-user.component';
+import { CreateUserComponent } from './pages/user/create-user/create-user.component';
+
 
 export const routes: Routes = [
     {path:'login', loadComponent: ()=> import('./pages/login/login.component')},
@@ -19,7 +24,12 @@ export const routes: Routes = [
     {path: 'etoile', component: InfoServiceComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'payement', component: PayementComponent },
-    {path: 'update-service/:id', component: UpdateServiceComponent}
+    {path: 'update-service/:id', component: UpdateServiceComponent},
+    {path: 'service/create', component: CreateServiceComponent},
+    {path: 'user', component: UserComponent},
+    {path: 'update-user/:id', component: UpdateUserComponent},
+    {path: 'user/create', component: CreateUserComponent},
+    
 
     
 ];

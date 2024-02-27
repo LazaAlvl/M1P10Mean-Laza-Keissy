@@ -1,0 +1,36 @@
+<div class="col-md-5 mx-auto py-5">
+    <h3>Update User</h3>
+<form [formGroup]="updateuserForm" (submit)="onSubmit()" class="contact-form">
+    <div class="form-group">
+        <label for="Firstame">Firstame</label>
+        <input type="text" id="firstname" formControlName="firstname" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input type="text" id="lastname" formControlName="lastname" class="form-control">
+    </div> 
+
+    <div class="form-group">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+    </div> 
+    
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="email" formControlName="password" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <select name="role" id="" class="form-control">
+            <option value="Employee">Employee</option>
+            <option value="Manager">Manager</option>
+        </select>
+    </div>  
+   
+    <div class="form-group">
+        <label for="number">Number</label>
+        <input type="text" id="number" formControlName="number" class="form-control">
+    </div>    
+    <button type="submit" class="btn btn-primary py-3 px-5 mx-auto">Update</button>
+  </form>
+</div> 

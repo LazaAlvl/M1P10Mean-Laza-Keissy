@@ -27,6 +27,7 @@ export class UpdateServiceComponent implements OnInit {
       name: [''],
       description: [''],
       deadline: [''],
+      price: [''],
       commission: ['']
     });
 
@@ -38,6 +39,7 @@ export class UpdateServiceComponent implements OnInit {
             name: data.name,
             description: data.description,
             deadline: data.deadline,
+            price: data.price,
             commission: data.commission
           });
         },

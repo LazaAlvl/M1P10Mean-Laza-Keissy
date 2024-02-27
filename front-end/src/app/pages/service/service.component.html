@@ -5,7 +5,7 @@
     
   </div>
   <div class="align-items-center d-md-flex justify-content-center mt-3 ">
-    <button class="btn btn-primary text-white">Create</button>
+    <button class="btn btn-primary text-white" routerLink="/service/create">Create</button>
     
   </div>
 <div class="align-items-center d-md-flex justify-content-center mt-3 ">
@@ -17,6 +17,7 @@
         <th>Name</th>
         <th>Description</th>
         <th>Deadline</th>
+        <th>Price</th>
         <th>Commission</th>
         <th>Action</th>
       </tr>
@@ -25,9 +26,10 @@
         <td class="align-middle">{{service.name}}</td>
         <td class="align-middle">{{service.description}}</td>
         <td class="align-middle">{{service.deadline}}</td>
+        <td class="align-middle">{{service.price}}</td>
         <td class="align-middle">{{service.commission}}</td>
         <td><button class="btn btn-success mr-2" (click)="update(service._id)"><i class="fa fa-pencil text-white"></i></button>
-          <button class="btn btn-danger"><i class="fa fa-trash text-white"></i></button></td>
+          <button class="btn btn-danger" (click)="delete(service._id)"><i class="fa fa-trash text-white"></i></button></td>
       </tr>
     </table>
   </div>

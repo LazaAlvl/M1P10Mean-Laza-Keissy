@@ -14,13 +14,14 @@ module.exports.GetService = async (req, res, next) => {
 }
 
 module.exports.CreateService = async (req, res, next) => {
-    const { name, price} = req.body;
+    const { name, description, deadline, price, commission} = req.body;
     try{  
     const service = new Service({
-        image,
         name,
         description,
-        price
+        deadline,
+        price,
+        commission
     });
     await service.save();
     return res.status(200).json('service register successfully');

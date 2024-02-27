@@ -1,6 +1,6 @@
 <div class="col-md-5 mx-auto py-5">
-    <h3>Update service</h3>
-<form [formGroup]="updateServiceForm" (submit)="onSubmit()" class="contact-form">
+    <h3>Create service</h3>
+<form [formGroup]="createServiceForm" (submit)="create()" class="contact-form">
     <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" formControlName="name" class="form-control">
@@ -13,17 +13,17 @@
     <div class="form-group">
         <label for="deadline">Deadline</label>
         <input type="text" id="deadline" formControlName="deadline" class="form-control">
-    </div> 
-    
+    </div>   
+
     <div class="form-group">
-        <label for="deadline">Price</label>
-        <input type="text" id="deadline" formControlName="price" class="form-control">
+        <label for="commission">Price</label>
+        <input type="number" id="commission" formControlName="price" class="form-control">
     </div> 
    
     <div class="form-group">
         <label for="commission">Commission</label>
-        <input type="text" id="commission" formControlName="commission" class="form-control">
+        <input type="number" id="commission" formControlName="commission" class="form-control">
     </div>    
-    <button type="submit" class="btn btn-primary py-3 px-5 mx-auto">Update</button>
+    <button type="submit" class="btn btn-primary py-3 px-5 mx-auto">Submit</button>
   </form>
 </div>  
