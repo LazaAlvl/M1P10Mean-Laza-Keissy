@@ -130,8 +130,80 @@
 
 </div>
     
-</div>   
+</div>
+<div class="content-reservation">
+    <div class="reservation-Day-main"> 
+            <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+                <h1 class="md-4"> Benefice </h1>
+            </div>
 
+        <div class="Benefice-div-form-main">
+            <div class="Benefice-form">    
+                <form [formGroup]="BeneficestatmonthForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="year">Year:</label>
+                        <select formControlName="year" id="">
+                            <option value="" disabled>Select a Year</option>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" (click)="getBeneficeMonth()">Submit</button>
+                </form>
+            </div>  
+            <div class="ChartMonthLinear">
+                <canvas id="LinearChartMonth"></canvas>
+            </div>
+        </div>       
+       
+       
+
+
+    </div >    
+    
+</div> 
+<div class="align-items-center d-md-flex justify-content-center mt-3 ">
+<h1 class="md-4"> Average working time </h1>
+</div>
+<div class="row d-md-flex align-items-center mt-5">
+        
+    <div class="col-md-5 py-5 d-flex align-items-center justify-content-center ">
+        
+         <div class="Form-Month">
+            <form [formGroup]="AvaregeForm" class="month-form-reservation">
+                
+                    <select formControlName="month" id="">
+                        <option value="" disabled>Select a month</option>
+                        <option *ngFor="let month of months; let i = index" [value]="i + 1">{{ month }}</option>
+                    </select>
+                
+                    <select formControlName="year" id="">
+                        <option value="" disabled>Select a Year</option>
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                    </select>
+                <button type="submit" class="btn btn-primary"(click)="getAverageWorking();">Submit</button>
+            </form>
+        </div>  
+    </div>  
+    <div class="col-md-6 py-4 ">
+        <table class="table">
+            <tr>
+                <th>Employee</th>
+                <th>Total Hours</th>
+                <th>Appointement validated</th>
+                <th>Average Hours</th>
+                <th>Average Min</th>
+            </tr>
+            <tr *ngFor="let avgworking of AvaregeInfos ">
+                <td>{{ avgworking.lastName}} {{ avgworking.firstName}} </td>
+                <td>{{ avgworking.totalHours}}</td>
+                <td>{{ avgworking.count}} </td>
+                <td>{{ avgworking.moyenneHour}} </td>
+                <td>{{ avgworking. moyenneMinutes}} </td>
+            </tr>
+        </table>
+    </div>
+</div>
 
 
 

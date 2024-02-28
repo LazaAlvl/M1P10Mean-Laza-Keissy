@@ -16,6 +16,15 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.Benefice-div-form-main{
+display: flex;
+width: 100%;
+height: 300px;
+justify-content: space-around;
+align-items: center;
+/* border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
 .reservation-Day{
   display: flex;
   width: 100%;
@@ -84,7 +93,7 @@
 
 .contact-form {
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
 }
 
 .contact-form label {
@@ -128,6 +137,32 @@
   align-items: center;
   justify-content: center;
   height: 60%;
+  width: 100%;
+}
+
+.Benefice-form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.Benefice-form select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #919191; 
+  font-size: 14px;
+  width: 200px;
+}
+.ChartMonthLinear{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  height: auto;
+}
+#LinearChartMonth{
+  height: 100%;
   width: 100%;
 }
 

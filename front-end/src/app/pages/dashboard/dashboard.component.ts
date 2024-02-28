@@ -43,6 +43,16 @@ Yearturnover: string = '';
 Monthturnover: string = '';
 Dayturnover: string = '';
 ChartTurnoverMonth: any;
+Monthbenefice!: string[];
+
+// Benefice Party  
+BeneficePrice!: number[];
+BeneficestatmonthForm!:FormGroup; 
+
+// Benefice Party  
+AvaregeForm!:FormGroup;
+AvaregeInfos: any[] = []; 
+
 
 
   
@@ -51,6 +61,7 @@ ChartTurnoverMonth: any;
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
+
   years: number[] = [];
 
 
@@ -71,6 +82,18 @@ ChartTurnoverMonth: any;
       month: [''],
       year: ['']
      })
+
+     this.BeneficestatmonthForm = this.fb.group({
+      year: ['']
+     })
+
+     this.AvaregeForm = this.fb.group({
+      month: [''],
+      year: ['']
+     })
+
+
+
     const currentYear = new Date().getFullYear();
     const startYear = 2000;
 
@@ -116,6 +139,7 @@ ChartTurnoverMonth: any;
       }
     });
   }
+  
 
   getTurnValidatedMonth(): void {
     // Faites appel à votre service HTTP pour récupérer les données
@@ -200,6 +224,68 @@ ChartTurnoverMonth: any;
             }
         }
     });
+}
+
+getBeneficeMonth(): void {
+  this.statisticService.GetBeneficeStatMonth(this.BeneficestatmonthForm.value).subscribe(data => {
+    if (data) {
+      this.BeneficePrice= data.result.map((result: { benefice: any; }) => result.benefice);
+      this.Monthbenefice= data.result.map((result: { month: any; }) => this.months[result.month - 1]);
+
+  
+            const monthsWithBenefice: string[] = [];
+      const beneficeByMonth: number[] = [];
+     this.months.forEach((month, index) => {
+        if (this.BeneficePrice[index] !== 0) {
+          monthsWithBenefice.push(month);
+          beneficeByMonth.push(this.BeneficePrice[index]);
+        }
+      });
+
+      this.createLinearChartMonth(monthsWithBenefice,beneficeByMonth);
+    }
+    
+
+  });
+}
+createLinearChartMonth(Months: string[], BeneficePrice: number[]): void {
+// Vérifiez s'il existe déjà une instance de chart
+if (this.ChartTurnoverMonth) {
+    // Détruisez l'instance existante du chart
+    this.ChartTurnoverMonth.destroy();
+}
+
+const ctx = document.getElementById('LinearChartMonth') as HTMLCanvasElement;
+this.ChartTurnoverMonth = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: Months,
+        datasets: [{
+            label: 'Turnover validated',
+            data: BeneficePrice,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+}
+getAverageWorking(): void {
+  // Faites appel à votre service HTTP pour récupérer les données
+  this.statisticService.Getaverage_working_time(this.AvaregeForm.value).subscribe(data => {
+    this.AvaregeInfos = data.result
+
+    // const counts = data.result.map((result: { count: any; }) => result.count);
+
+  });
 }
 
 

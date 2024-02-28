@@ -28,6 +28,15 @@ export class StatisticService {
     const url = `${apiUrlStat.StatApi}chiffre_affaire_mois`;
     return this.http.post<any>(url,reservationstatObj);
   }
+  GetBeneficeStatMonth(reservationstatObj:any): Observable<any> {
+    const url = `${apiUrlStat.StatApi}benefice_mois`;
+    return this.http.post<any>(url,reservationstatObj);
+  }
+  Getaverage_working_time(reservationstatObj:any): Observable<any> {
+    const url = `${apiUrlStat.StatApi}temps_moyenne_travail`;
+    return this.http.post<any>(url,reservationstatObj);
+  }
+  
 
   
 }
