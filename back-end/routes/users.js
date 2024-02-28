@@ -16,5 +16,4 @@ router.delete('/delete_employees/:id', DeleteEmployee);
 
 router.get('/getUserDetails/:id', getUserDetails);
 router.get('/paginatedusers', getPaginatedUsers);
-
 module.exports = router;

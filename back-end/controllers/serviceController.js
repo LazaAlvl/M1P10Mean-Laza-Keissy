@@ -24,7 +24,7 @@ module.exports.CreateService = async (req, res, next) => {
         commission
     });
     await service.save();
-    return res.status(200).json('service register successfully');
+    return res.status(201).json('service register successfully');
 
 } catch (error) {
     // Gérer les erreurs

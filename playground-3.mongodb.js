@@ -141,7 +141,7 @@ use('test')
 //     {
 //         $match: {
 //             etat: true,
-//             effectué: true
+//             effectue: true
 //         }
 //     },
 //     {
@@ -205,4 +205,43 @@ use('test')
 // db.nbre_reservation_jour_vw.find();
 
 
-db.rendez_vous.find();
+db.chiffre_affaire_mois_vw.find();
+// db.createView("chiffre_affaire_mois_vw", "rendez_vous", [
+//     {
+//         $lookup: {
+//             from: "services",
+//             localField: "id_service",
+//             foreignField: "_id",
+//             as: "serviceInfo"
+//         }
+//     },
+//     {
+//         $unwind: "$serviceInfo"
+//     },
+//     {
+//         $match: {
+//             etat: true,
+//             effectue: true // Utilisez "effectue" au lieu de "effectué"
+//         }
+//     },
+//     {
+//         $group: {
+//             _id: {
+//                 service: "$serviceInfo.name",
+//                 year: { $year: "$date" },
+//                 month: { $month: "$date" }
+//             },
+//             totalPrice: { $sum: "$serviceInfo.price" }
+//         }
+//     },
+//     {
+//         $project: {
+//             _id: 0,
+//             service: "$_id.service",
+//             year: "$_id.year",
+//             month: "$_id.month",
+//             day: "$_id.day",
+//             totalPrice: 1
+//         }
+//     }
+// ]);

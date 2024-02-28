@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   logout()
   {
     localStorage.removeItem("user_id");
-    localStorage.removeItem("firstname");
+    localStorage.removeItem("role");
     this.authService.isLoggedIn$.next(false);
   }
 
@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
   }
   isManager(): boolean {
     const user_role = localStorage.getItem("role");
+    // console.log(user_role);
       if( user_role === "Manager")
       { 
         return true;

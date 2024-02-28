@@ -11,6 +11,7 @@ import { CreateServiceComponent } from './pages/service/create-service/create-se
 import { UserComponent } from './pages/user/user.component';
 import { UpdateUserComponent } from './pages/user/update-user/update-user.component';
 import { CreateUserComponent } from './pages/user/create-user/create-user.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 export const routes: Routes = [
@@ -29,6 +30,7 @@ export const routes: Routes = [
     {path: 'user', component: UserComponent},
     {path: 'update-user/:id', component: UpdateUserComponent},
     {path: 'user/create', component: CreateUserComponent},
+    {path: 'dashboard', component: DashboardComponent},
     
 
     

@@ -10,3 +10,6 @@ export const apiUrlRendezVous = {
 export const apiUrlPreference = {
     preferenceApi: "http://localhost:3000/preference/"
 }
+export const apiUrlStat = {
+    StatApi: "http://localhost:3000/stats/"
+}

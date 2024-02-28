@@ -101,7 +101,7 @@ module.exports.RegisterEmploye = async (req, res, next) => {
         role
   });
     await client.save();
-    return res.status(200).json('Employee register successfully');
+    return res.status(201).json('Employee register successfully');
 
   } catch (error) {
     // Gérer les erreurs
