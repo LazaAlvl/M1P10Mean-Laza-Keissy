@@ -6,6 +6,7 @@ import { ServiceService } from '../../services/service.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RendezVousService } from '../../services/rendez-vous.service';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PayementRdvService } from '../../services/payement-rdv.service';
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -38,7 +39,7 @@ export class RendezVousComponent {
     selectedDate!:Date;
     hours: string[] = [];
  
-    constructor(private route: ActivatedRoute) { }
+    constructor(private route: ActivatedRoute,private dataService: PayementRdvService) { }
 
   
    
@@ -96,17 +97,22 @@ export class RendezVousComponent {
 
       this.rendezvousForm.value.id_employe = this.selectedEmployeeId;
 
-      this.RendezVousService.InsertRendezVous(this.rendezvousForm.value).subscribe({
-        next:(res)=>{
-          alert("RDV Created!") 
-          this.rendezvousForm.reset();
-          this.router.navigate(['home'])
-        },
-        error:(err)=>
-        console.log(err)
-      })
+      this.dataService.setRendezVousData(this.rendezvousForm.value);
+      
 
-      console.log(this.rendezvousForm.value);
+      this.router.navigate(['payement']);
+
+      // this.RendezVousService.InsertRendezVous(this.rendezvousForm.value).subscribe({
+      //   next:(res)=>{
+      //     alert("RDV Created!") 
+      //     this.rendezvousForm.reset();
+      //     this.router.navigate(['home'])
+      //   },
+      //   error:(err)=>
+      //   console.log(err)
+      // })
+
+      // console.log(this.rendezvousForm.value);
     }
 
     ngOnInit(): void {
@@ -126,7 +132,7 @@ export class RendezVousComponent {
       id_employe: [''], // Exemple avec un champ employee initialisé à une chaîne vide
       date: [''], // Exemple avec un champ date initialisé à une chaîne vide
       hour: [''],
-      etat: ['true'] 
+      etat: [''] 
       }); 
       });
     }

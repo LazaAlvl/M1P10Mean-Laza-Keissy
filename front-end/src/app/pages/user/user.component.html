@@ -1,0 +1,52 @@
+<section class="ftco-section " *ngIf="isManager()">
+    <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+      <h1 class="md-4"> List of Users</h1>
+      
+    </div>
+    <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+      <button class="btn btn-primary text-white" routerLink="/user/create">Create</button>
+      
+    </div>
+  <div class="align-items-center d-md-flex justify-content-center mt-3 ">
+    
+    <div class="d-md-flex  py-3 ">
+      
+      <table class="table">
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>E-mail</th>
+          <th>Role</th>
+          <th>Number</th>
+          <th>Action</th>
+        </tr>
+  
+        <tr *ngFor="let user of paginatedUsers">
+          <td class="align-middle">{{user.firstname}}</td>
+          <td class="align-middle">{{user.lastname}}</td>
+          <td class="align-middle">{{user.email}}</td>
+          <td class="align-middle">{{user.role}}</td>
+          <td class="align-middle">{{user.number}}</td>
+          <td><button class="btn btn-success mr-2" (click)="update(user._id)"><i class="fa fa-pencil text-white"></i></button>
+            <button class="btn btn-danger" (click)="delete(user._id)"><i class="fa fa-trash text-white"></i></button></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+   
+      <div class="row mt-5">
+        
+        <div class="col text-center">
+          
+          <div *ngIf="totalPages > 0" class="block-27">
+              <ul>
+                <li><a (click)="prevPage()" [class.disabled]="currentPage === 1">&lt;</a></li>
+                <li *ngFor="let page of getPagesArrays()">
+                  <a (click)="getPage(page)" [class.active]="currentPage === page">{{ page }}</a>
+                </li>
+                <li><a (click)="nextPage()" [class.disabled]="currentPage === totalPages">&gt;</a></li>
+              </ul>
+            </div>
+        </div>
+      </div>
+  </section>

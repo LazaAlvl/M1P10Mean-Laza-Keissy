@@ -110,7 +110,7 @@ isManager(): boolean {
     }else{
       return false;
     }
-}
+  }
 
 }  
   

@@ -1,7 +1,12 @@
 
-<section class="ftco-section contact-section">
-    <form [formGroup]="rendezvousForm" class="contact-form">
-        <div class="container mt-5" >
+<section class="ftco-section contact-section ">
+
+    <div class="align-items-center d-md-flex justify-content-center">
+        <h1 class="md-4"> YOUR APPOINTEMENT</h1>
+    </div>
+
+    <form [formGroup]="rendezvousForm" class="contact-form" jus>
+        <div class="container d-flex mt-5 justify-content-center" >
                
             <div class="col-md-6 " *ngIf="service">
                 <h3>1. Service Selected </h3>
@@ -28,7 +33,7 @@
                 </div>
             </div>    
         </div> 
-        <div class="container mt-5" >
+        <div class="container d-flex mt-5 justify-content-center" >
             <div class="col-md-6 ">
                 <h3>2. Date and Hour </h3>
                     <div class="row">

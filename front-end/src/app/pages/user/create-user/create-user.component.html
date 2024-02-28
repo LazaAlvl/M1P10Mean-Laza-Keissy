@@ -1,0 +1,53 @@
+<div class="overlay"></div>
+<div class="col-md-5 mx-auto py-5">
+    <h3>REGISTER</h3>
+    <form [formGroup]="createuserForm" action="#" class="contact-form">
+        <!-- <div class="row">
+            <div class="col-md-6"> -->
+              <div class="form-group">
+                <input formControlName="firstname" type="text" class="form-control" placeholder="Your FirstName">
+                <span *ngIf="createuserForm.hasError('required', 'firstname') && createuserForm.controls ['firstname'].dirty"  style="color: red;">*Email required </span>
+              </div>
+
+              <div class="form-group">
+                <input formControlName="lastname" type="text" class="form-control" placeholder="Your LastName">
+                <span *ngIf="createuserForm.hasError('required', 'lastname') && createuserForm.controls ['lastname'].dirty"  style="color: red;">*Lastname required </span>
+              </div>
+              <div class="form-group">
+                <select formControlName="role" id="role" class="form-control">
+                    <option value="Employee">Employee</option>
+                    <option value="Manager">Manager</option>
+                </select>
+                <span *ngIf="createuserForm.hasError('required', 'role') && createuserForm.controls ['role'].dirty"  style="color: red;">*Email required </span>
+              </div>
+          <!-- </div>
+          <div class="col-md-6"> -->
+              <div class="form-group">
+                <input formControlName="email"type="text" class="form-control" placeholder="Your E-mail">
+                <span *ngIf="createuserForm.hasError('required', 'email') && createuserForm.controls ['email'].dirty"  style="color: red;">*Email required </span>
+                <span *ngIf="createuserForm.hasError('email', 'email')" style="color: red;">*Email Invalid </span>
+              </div>
+              <div class="form-group">
+                <input formControlName="password" type="password" class="form-control" placeholder="Your Password">
+                <span *ngIf="createuserForm.hasError('required', 'password') && createuserForm.controls ['password'].dirty"  style="color: red;">*Email required </span>
+              </div>
+              <div class="form-group">
+                <input formControlName="confirmpassword" type="password" class="form-control" placeholder="Confrim Password">
+                <span *ngIf="createuserForm.hasError('required', 'confirmpassword') && createuserForm.controls ['confirmpassword'].dirty"  style="color: red;">*Confirm Password required </span>
+                <span *ngIf="createuserForm.hasError('confirmPasswordValidator', 'confirmpassword')" style="color: red;">*Password didn't match </span>
+              </div>
+              <!-- </div>
+      </div> -->
+            <div class="form-group">
+              <input type="text" formControlName="number"class="form-control" placeholder="Your Number">
+              <span *ngIf="createuserForm.hasError('required', 'number') && createuserForm.controls ['number'].dirty"  style="color: red;">*Email required </span>
+            </div>
+     
+      <div class="form-group">
+        <input (click)="create()" type="submit" value="Submit" class="btn btn-primary py-3 px-5 mx-auto">
+      </div>
+    </form>
+    <span style="color: black;">Already have account? <a routerLink="/login">click here</a></span>
+</div>
+
+

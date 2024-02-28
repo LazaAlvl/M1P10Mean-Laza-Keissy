@@ -3,13 +3,14 @@ const bcrypt = require('bcryptjs');
 
 module.exports.RegisterClient = async (req, res, next) => {
     const salt= await bcrypt.genSalt(10);
-    const { firstname, lastname, email, password, number } = req.body;
+    const { firstname, lastname, email, role, password, number } = req.body;
     const hashpassword = await bcrypt.hash(password,salt);
   try{  
     const client = new User({
         firstname,
         lastname,
         email,
+        role,
         password: hashpassword,
         number
     });
@@ -46,6 +47,44 @@ module.exports.LoginClient = async (req, res, next) => {
   }
 }
 
+module.exports.getPaginatedUsers= async (req, res, next) => {
+  try {
+    const users = await User.find({ role: { $in: ['Manager', 'Employee'] } });
+
+
+    const page = parseInt(req.query.page) || 1;
+    const pageSize = parseInt(req.query.pageSize) || 8;
+
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = page * pageSize;
+    const paginatedUsers = users.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(users.length / pageSize);
+
+    const paginatedResult = {
+      users: paginatedUsers,
+      totalServices: users.length,
+      totalPages: totalPages,
+      currentPage: page
+    };
+
+    res.json(paginatedResult);
+
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+module.exports.getUserDetails = async (req, res) => {
+  try {
+      const user = await User.findById(req.params.id);
+      if(user){
+          return res.json(user); // Utilisez `service` au lieu de `services`
+      }
+  } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Failed to get service details' });
+  }
+};
 
 // ---------- Gestion Employe ----------
 module.exports.RegisterEmploye = async (req, res, next) => {

@@ -205,7 +205,7 @@ use('test')
 // db.nbre_reservation_jour_vw.find();
 
 
-db.chiffre_affaire_mois_vw.find();
+// db.rendez_vous.find();
 // db.createView("chiffre_affaire_mois_vw", "rendez_vous", [
 //     {
 //         $lookup: {
@@ -245,3 +245,70 @@ db.chiffre_affaire_mois_vw.find();
 //         }
 //     }
 // ]);
+
+
+
+
+// db.createView("nbre_reservation_jour_vw", "rendez_vous", [
+//     {
+//       $group: {
+//         _id: {
+//           year: { $year: "$date" },
+//           month: { $month: "$date" },
+//           day: { $dayOfMonth: "$date" }
+//         },
+//         count: { $sum: 1 }
+//       }
+//     },
+//     {
+//       $project: {
+//         _id: 0,
+//         year: "$_id.year",
+//         month: "$_id.month",
+//         day: "$_id.day",
+//         count: 1
+//       }
+//     }
+//   ]);
+  
+
+
+// db.createView("chiffre_affaire_jour_vw", "rendez_vous", [
+//     {
+//       $lookup: {
+//         from: "services",
+//         localField: "id_service",
+//         foreignField: "_id",
+//         as: "serviceInfo"
+//       }
+//     },
+//     {
+//       $unwind: "$serviceInfo"
+//     },
+//     {
+//       $match: {
+//         etat: true,
+//         effectue: true
+//       }
+//     },
+//     {
+//       $group: {
+//         _id: {
+//           year: { $year: "$date" },
+//           month: { $month: "$date" },
+//           day: { $dayOfMonth: "$date" }
+//         },
+//         totalPrice: { $sum: "$serviceInfo.price" }
+//       }
+//     },
+//     {
+//       $project: {
+//         _id: 0,
+//         year: "$_id.year",
+//         month: "$_id.month",
+//         day: "$_id.day",
+//         totalPrice: 1
+//       }
+//     }
+//   ]);
+  
