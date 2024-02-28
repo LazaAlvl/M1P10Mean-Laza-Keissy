@@ -161,10 +161,9 @@ module.exports.GetRendezVousEmploye = async (req, res, next) => {
         
         // Obtenir la date actuelle
         const currentDate = new Date(); 
-
-        // Extraire l'année, le mois et le jour de la date actuelle
+        currentDate.setHours(currentDate.getHours() + 3);
         const year = currentDate.getFullYear();
-        const month = currentDate.getMonth() + 1; // Notez que getMonth() retourne les mois de 0 à 11, donc ajoutez 1 pour obtenir le mois actuel
+        const month = currentDate.getMonth() + 1;
         const day = currentDate.getDate();
 
         const rendezVousEmploye = await RendezVous.find({
@@ -196,19 +195,15 @@ module.exports.SuiviTachesCommissionJourEmploye = async (req, res, next) => {
     try {
         const employeId = req.params.employeId;
 
-        // Obtenir la date actuelle
         const currentDate = new Date();
         currentDate.setHours(currentDate.getHours() + 3);
 
-        // Réinitialiser l'heure, les minutes, les secondes et les millisecondes à 0 pour obtenir le début de la journée
         currentDate.setHours(0, 0, 0, 0);
 
-        // Calculer la date de début et de fin de la journée en cours
         const debutJournee = currentDate;
         const finJournee = new Date(currentDate);
         finJournee.setDate(finJournee.getDate() + 1);
 
-        // Récupérer tous les rendez-vous pour l'employé spécifique et pour la journée en cours avec l'état "effectué"
         const rendezVousJourEmploye = await RendezVous.find({
             id_employe: employeId,
             date: {
@@ -227,3 +222,36 @@ module.exports.SuiviTachesCommissionJourEmploye = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+// gestion horaire de travail
+module.exports.GetHoraireTravail = async (req, res, next) => {
+    try {
+        const { employeId } = req.params; 
+
+        const currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() + 3);
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth() + 1;
+
+        const rendezVous = await RendezVous.find({
+            id_employe: employeId,
+            $expr: {
+                $and: [
+                    { $eq: [{ $year: "$date" }, currentYear] }, 
+                    { $eq: [{ $month: "$date" }, currentMonth] }, 
+                    { $eq: ["$etat", true] },
+                    { $eq: ["$effectue", true] }
+                ]
+            }
+        })
+        .populate('id_employe', 'firstname lastname')
+        .populate('id_client', 'firstname lastname')
+        .populate('id_service', 'name price');
+
+        return res.status(200).json(rendezVous);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
