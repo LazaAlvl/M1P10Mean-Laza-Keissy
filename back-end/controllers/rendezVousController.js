@@ -18,7 +18,6 @@ module.exports.GetRendezVous = async (req, res, next) => {
     }
 }
 
-
 module.exports.CreateRendezVous = async (req, res, next) => {
     const { id_client, id_employe, id_service, date, etat } = req.body;
     try {
@@ -223,6 +222,7 @@ module.exports.SuiviTachesCommissionJourEmploye = async (req, res, next) => {
     }
 };
 
+
 // gestion horaire de travail
 module.exports.GetHoraireTravail = async (req, res, next) => {
     try {
@@ -254,4 +254,5 @@ module.exports.GetHoraireTravail = async (req, res, next) => {
         return res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
 

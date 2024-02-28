@@ -11,7 +11,10 @@ module.exports.GetNombreReservationsJour = async (req, res, next) => {
 
         console.log(result);
 
-        return res.status(200).json({ result });
+
+        return res.status(200).json({ result,dateInput });
+
+
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -47,7 +50,8 @@ module.exports.GetChiffreAffaireJour = async (req, res, next) => {
 
         console.log(result);
 
-        return res.status(200).json({ result });
+        return res.status(200).json({ result,dateInput });
+
     } catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -85,6 +89,7 @@ module.exports.GetBeneficeMois = async (req, res, next) => {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
+
 };
 
 module.exports.GetTempsMoyenneTravailEmploye = async (req, res, next) => {
@@ -101,4 +106,5 @@ module.exports.GetTempsMoyenneTravailEmploye = async (req, res, next) => {
         console.error(error);
         return res.status(500).json({ error: 'Internal Server Error' });
     }
+
 };

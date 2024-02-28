@@ -9,7 +9,10 @@ router.post('/chiffre_affaire_jour', statsController.GetChiffreAffaireJour);
 router.post('/chiffre_affaire_mois', statsController.GetChiffreAffaireMois);
 
 router.post('/benefice_mois', statsController.GetBeneficeMois);
+
+
 router.post('/temps_moyenne_travail', statsController.GetTempsMoyenneTravailEmploye);
 
 
 module.exports = router;
+

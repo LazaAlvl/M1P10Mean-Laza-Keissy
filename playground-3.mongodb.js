@@ -205,7 +205,7 @@ use('test')
 // db.nbre_reservation_jour_vw.find();
 
 
-// db.rendez_vous.find();
+db.services.find();
 // db.createView("chiffre_affaire_mois_vw", "rendez_vous", [
 //     {
 //         $lookup: {
