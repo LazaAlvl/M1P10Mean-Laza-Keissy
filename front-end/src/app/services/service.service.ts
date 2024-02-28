@@ -33,6 +33,10 @@ export class ServiceService {
     const url = `${apiUrlservice.ServiceApi}delete/${id}`;
     return this.http.delete<any>(url);
   }
+  get3Service(): Observable<any> {
+    const url = `${apiUrlservice.ServiceApi}3services`;
+    return this.http.get<any>(url);
+  }
   
 
 }

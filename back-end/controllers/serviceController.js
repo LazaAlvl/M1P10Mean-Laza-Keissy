@@ -13,6 +13,18 @@ module.exports.GetService = async (req, res, next) => {
     }
 }
 
+module.exports.Get3service = async (req, res) => {
+    try {
+        const services = await Service.aggregate([{$sample: {size: 3}}]);
+        if (services) {
+            return res.json(services);
+        }
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Failed to get 3 random services' });
+    }
+};
+
 module.exports.CreateService = async (req, res, next) => {
     const { name, description, deadline, price, commission} = req.body;
     try{  

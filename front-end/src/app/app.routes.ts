@@ -13,6 +13,7 @@ import { UpdateUserComponent } from './pages/user/update-user/update-user.compon
 import { CreateUserComponent } from './pages/user/create-user/create-user.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
 
 
 export const routes: Routes = [
@@ -33,7 +34,7 @@ export const routes: Routes = [
     {path: 'user/create', component: CreateUserComponent},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'contact', component: ContactComponent},
-    
+    {path: 'about', component: AboutComponent}
 
     
 ];
