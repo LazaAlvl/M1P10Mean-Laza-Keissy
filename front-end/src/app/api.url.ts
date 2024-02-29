@@ -1,15 +1,15 @@
 export const apiUrl = {
-    authServiceApi: "http://localhost:3000/users/"
+    authServiceApi: "https://backend-production-cb4b.up.railway.app/users/"
 }
 export const apiUrlservice = {
-    ServiceApi: "http://localhost:3000/services/"
+    ServiceApi: "https://backend-production-cb4b.up.railway.app/services/"
 }
 export const apiUrlRendezVous = {
-    RendezVousApi: "http://localhost:3000/rendez_vous/"
+    RendezVousApi: "https://backend-production-cb4b.up.railway.app/rendez_vous/"
 }
 export const apiUrlPreference = {
-    preferenceApi: "http://localhost:3000/preference/"
+    preferenceApi: "https://backend-production-cb4b.up.railway.app/preference/"
 }
 export const apiUrlStat = {
-    StatApi: "http://localhost:3000/stats/"
+    StatApi: "https://backend-production-cb4b.up.railway.app/stats/"
 }
