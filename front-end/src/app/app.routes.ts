@@ -17,6 +17,7 @@ import { AboutComponent } from './pages/about/about.component';
 
 
 export const routes: Routes = [
+    { path: '', component: HomeComponent },
     {path:'login', loadComponent: ()=> import('./pages/login/login.component')},
     {path:'register', loadComponent: ()=> import('./pages/register/register.component')},
     {path:'reset',component:ResetComponent}, 
