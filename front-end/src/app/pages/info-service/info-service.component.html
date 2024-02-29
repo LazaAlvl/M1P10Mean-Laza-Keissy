@@ -24,7 +24,7 @@
                     
                 <br>
                 <h5 class="mb-4">{{ serviceDetails.price }} Ar</h5>
-                <p>{{ serviceDetails.descritpion }}</p>
+                <p>{{ serviceDetails.description }}</p>
                 
                 <ng-container *ngIf="isClient()">
                     <button class="btn btn-primary py-3 px-5 mx-auto" [routerLink]="['/rendez_vous', serviceDetails._id]"> Get RDV</button>
