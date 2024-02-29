@@ -1,1 +1,123 @@
-<p>home works!</p>
+<section class="ftco-section ftco-discount img" style="background-image: url(../../../assets/images/bg_2.jpg);">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-5 discount ">
+                <h3>Save up to 25% Off</h3>
+                <h2 class="mb-4">Student Discount</h2>
+                <p class="mb-4">Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                <p><a href="#" class="btn btn-white btn-outline-white px-4 py-3">See more</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- partner -->
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+      <div class="col-md-7 heading-section text-center">
+        <h2 class="mb-4">Our services</h2>
+        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let srv of Services">
+            <a  [routerLink]="['/info-service', srv._id]" class="work-entry">
+                <img src="../../../assets/images/{{srv.image}}" class="img-fluid" alt="Colorlib Template">
+                <div class="info d-flex align-items-center">
+                    <div>
+                        <div class="icon mb-4 d-flex align-items-center justify-content-center">
+                            <span class="icon-search"></span>
+                        </div>
+                        <h3>{{srv.name}}</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- partner -->
+<section class="ftco-partner bg-light">
+    <div class="container">
+        <div class="row partner justify-content-center">
+            <div class="col-md-10">
+                <div class="row">
+                <div class="col-md-3 ">
+                    <a href="#" class="partner-entry">
+                        <img src="../../../assets/images/partner-1.jpg" class="img-fluid" alt="Colorlib template">
+                    </a>
+                </div>
+                <div class="col-md-3 ">
+                    <a href="#" class="partner-entry">
+                        <img src="../../../assets/images/partner-2.jpg" class="img-fluid" alt="Colorlib template">
+                    </a>
+                </div>
+                <div class="col-md-3 ">
+                    <a href="#" class="partner-entry">
+                        <img src="../../../assets/images/partner-3.jpg" class="img-fluid" alt="Colorlib template">
+                    </a>
+                </div>
+                <div class="col-md-3 ">
+                    <a href="#" class="partner-entry">
+                        <img src="../../../assets/images/partner-4.jpg" class="img-fluid" alt="Colorlib template">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!-- contact -->
+<section class="ftco-section contact-section">
+    <div class="container mt-5">
+      <div class="row block-9">
+                    <div class="col-md-4 contact-info ">
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                  <h2 class="h4">Contact Information</h2>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <p><span>Email:</span> <a href="mailto:info@yoursite.com">Pretty&#64;amelia.com</a></p>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <p><span>Website:</span> <a href="#">yoursite.com</a></p>
+                </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
+        <div class="col-md-6">
+          <form action="#" class="contact-form">
+              <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Your Name">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Your Email">
+                    </div>
+                    </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Subject">
+            </div>
+            <div class="form-group">
+              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>

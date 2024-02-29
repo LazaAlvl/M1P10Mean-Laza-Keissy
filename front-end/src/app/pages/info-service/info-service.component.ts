@@ -140,6 +140,15 @@ export class InfoServiceComponent implements OnInit{
         
       });
   }
+  isClient(): boolean {
+    const user_role = localStorage.getItem("role");
+    if( user_role === "Client")
+    { 
+      return true;
+    }else{
+      return false;
+    }
+  }
 
 
 }
