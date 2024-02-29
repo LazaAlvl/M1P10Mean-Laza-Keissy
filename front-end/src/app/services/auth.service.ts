@@ -38,6 +38,11 @@ export class AuthService {
     const url = `${apiUrl.authServiceApi}delete_employees/${id}`;
     return this.http.delete<any>(url);
   }
+  sendEmail(emailobj:any):Observable<any>{
+    const url = `${apiUrl.authServiceApi}sendMail`;
+    return this.http.post<any>(url,emailobj);
+  }  
+
    
   isLoggedin(){
     return !!localStorage.getItem("user_id");
