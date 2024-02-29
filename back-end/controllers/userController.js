@@ -1,5 +1,44 @@
 const  User  = require('../models/userModel');
 const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
+
+// Configurer le transporteur SMTP
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'alivelolaza@gmail.com',
+        pass: 'vxte vnee mfqf fulr'
+    }
+});
+module.exports.SendMail = async (req, res, next) => {
+  const { name, email, subject, message } = req.body;
+  try{  
+  
+    const mailOptions = {
+        from: email,
+        to:'alivelolaza@gmail.com',
+        subject: subject,
+        text: `Morning I'm ${name},\n\n${message}`
+    };
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+          console.error(error);
+          res.status(500).send('Erreur lors de l\'envoi de l\'email');
+      } else {
+          console.log('Email envoyé: ' + info.response);
+          res.status(200).send('Email envoyé avec succès');
+      }
+  });
+  
+
+  } catch (error) {
+    // Gérer les erreurs
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  } 
+}
+
+
 
 module.exports.RegisterClient = async (req, res, next) => {
     const salt= await bcrypt.genSalt(10);

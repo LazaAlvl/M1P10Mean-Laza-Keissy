@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { RegisterClient, LoginClient, GetEmployeesAndManagers, RegisterEmploye, UpdateEmployeeInfo, DeleteEmployee,getPaginatedUsers,getUserDetails } = require('../controllers/userController');
+const { RegisterClient, LoginClient, GetEmployeesAndManagers, RegisterEmploye, UpdateEmployeeInfo, DeleteEmployee,getPaginatedUsers,getUserDetails,SendMail } = require('../controllers/userController');
 
 /* GET users listing. */
 router.post('/registerclient', RegisterClient);
@@ -21,5 +21,9 @@ router.get('/paginatedusers', getPaginatedUsers);
 router.post('/create_employee', RegisterEmploye);
 router.put('/update_employee/:id', UpdateEmployeeInfo);
 router.delete('/delete_employee/:id', DeleteEmployee);
+
+router.post('/sendMail', SendMail);
+
+
 
 module.exports = router;
